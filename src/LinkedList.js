@@ -140,7 +140,60 @@ class LinkedList {
 
     return value;
     }
-    
+
+    insertAt(index, value) {
+    if (index < 0) return false;
+
+    const newNode = new Node(value);
+
+    if (index === 0) {
+        newNode.nextNode = this.head;
+        this.head = newNode;
+        return true;
+    }
+
+    let current = this.head;
+    let previous = null;
+    let count = 0;
+
+    while (current !== null && count < index) {
+        previous = current;
+        current = current.nextNode;
+        count++;
+    }
+
+    if (count !== index) return false;
+
+    previous.nextNode = newNode;
+    newNode.nextNode = current;
+
+    return true;
+    }
+
+    removeAt(index) {
+    if (index < 0 || this.head === null) return false;
+
+    if (index === 0) {
+        this.head = this.head.nextNode;
+        return true;
+    }
+
+    let current = this.head;
+    let previous = null;
+    let count = 0;
+
+    while (current !== null && count < index) {
+        previous = current;
+        current = current.nextNode;
+        count++;
+    }
+
+    if (current === null) return false;
+
+    previous.nextNode = current.nextNode;
+
+    return true;
+    }
 }
 
 export default LinkedList;
