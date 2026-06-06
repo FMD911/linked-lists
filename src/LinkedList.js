@@ -40,7 +40,43 @@ class LinkedList {
   }
 
   return count;
+    }
+
+    head() {
+    return this.head;
+    }
+
+    tail() {
+    if (this.head === null) return null;
+
+    let current = this.head;
+
+    while (current.nextNode !== null) {
+        current = current.nextNode;
+    }
+
+    return current;
 }
+
+    at(index) {
+    if (index < 0) return null;
+
+    let current = this.head;
+    let count = 0;
+
+    while (current !== null) {
+        if (count === index) {
+        return current;
+        }
+
+        current = current.nextNode;
+        count++;
+    }
+
+    return null;
+    }
+    
 }
+
 
 export default LinkedList;
